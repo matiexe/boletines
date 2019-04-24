@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
+        function proteccion(){
+           
+              google.script.run.proteger();
+          
+               alert("Proteccion terminada")
+        
+          
+          }
+        function onSuccess(lista) {
+        var tbody = document.getElementsByTagName("tbody")[0];
+        //var row =document.createElement("tr");
+        for(var i= 0;i<lista.length;i++){
+        var row =document.createElement("tr");
+          for(var j=0;j<1;j++){
+          var celda1 = document.createElement("td");
+          var celda2 = document.createElement("td");
+          var celda3 = document.createElement("td");
+          var celda4 = document.createElement("td");
+          var celda5 = document.createElement("td");
+          var textoCelda1= document.createTextNode(lista[i].materias);
+          var textoCelda2 = document.createTextNode(lista[i].profes);
+          var textoCelda3 = document.createTextNode(lista[i].correo);
+          var textoCelda4 = document.createTextNode(lista[i].rango);
+          var boton =document.createElement("button")
+          boton.type="button"
+          boton.className="btn btn-success sm"
+          boton.name="Proteger"
+          boton.appendChild(document.createTextNode("Proteger"));
+          boton.addEventListener("click",proteccion,false)
+          celda1.appendChild(textoCelda1);
+          celda2.appendChild(textoCelda2);
+          celda3.appendChild(textoCelda3);
+          celda4.appendChild(textoCelda4);
+          celda5.appendChild(boton)
+          row.appendChild(celda1);
+          row.appendChild(celda2);
+          row.appendChild(celda3);
+          row.appendChild(celda4);
+          row.appendChild(celda5);
+         
+        }
+        
+         tbody.appendChild(row);
+        }
+        //tbody.appendChild(row);
+      }
+
+      google.script.run.withSuccessHandler(onSuccess)
+          .crearObjeto();
+    
+    </script>
+  
+  </head>
+  <body onload=onSuccess()>
+    <div class = "table-responsive-md">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Materia</th>
+            <th scope="col">Profesor</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Rango</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+        </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    
+  
+    <div id="output"></div>
+  </body>
+</html>
+
+
